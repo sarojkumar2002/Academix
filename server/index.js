@@ -16,6 +16,7 @@ connectDB();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+console.log("Port number is : " , PORT);
 
 // default middleware
 app.use(express.json());

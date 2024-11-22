@@ -57,6 +57,9 @@ const Login = () => {
     }
   };
 
+  console.log("Signup input: ",signupInput);
+  
+
   const handleRegistration = async (type) => {
     const inputData = type === "signup" ? signupInput : loginInput;
     const action = type === "signup" ? registerUser : loginUser;
