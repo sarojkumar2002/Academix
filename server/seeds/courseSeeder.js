@@ -25,10 +25,10 @@ const seedCourses = async () => {
         console.log('🔍 Checking for existing instructor user...', instructor);
         if (!instructor) {
             console.log('👨‍🏫 Creating instructor user...');
-            const hashedPassword = await bcryptjs.hash('password123', 10);
+            const hashedPassword = await bcryptjs.hash('saroj', 10);
             instructor = await User.create({
                 name: 'Saroj Kumar',
-                email: 'instructor@example.com',
+                email: 'saroj@gmail.com',
                 password: hashedPassword,
                 role: 'instructor',
                 photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'

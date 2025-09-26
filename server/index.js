@@ -22,7 +22,19 @@ console.log("Port number is : ", PORT);
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+const allowedOrigins = [
+    "https://academix-frontend.onrender.com",
+    "http://localhost:5173"
+];
+
+app.use(
+    cors({
+        origin: allowedOrigins,
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+        allowedHeaders: ["Content-Type", "Authorization"]
+    })
+);
 
 // apis
 app.use("/api/v1/media", mediaRoute);
