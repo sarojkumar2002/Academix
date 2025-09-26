@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   useLoginUserMutation,
@@ -25,6 +26,7 @@ const Login = () => {
     name: "",
     email: "",
     password: "",
+    role: "",
   });
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
 
@@ -50,6 +52,7 @@ const Login = () => {
 
   const changeInputHandler = (e, type) => {
     const { name, value } = e.target;
+    console.log(name, value);
     if (type === "signup") {
       setSignupInput({ ...signupInput, [name]: value });
     } else {
@@ -57,8 +60,8 @@ const Login = () => {
     }
   };
 
-  console.log("Signup input: ",signupInput);
-  
+  console.log("Signup input: ", signupInput);
+
 
   const handleRegistration = async (type) => {
     const inputData = type === "signup" ? signupInput : loginInput;
@@ -67,17 +70,17 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if(registerIsSuccess && registerData){
+    if (registerIsSuccess && registerData) {
       toast.success(registerData.message || "Signup successful.")
     }
-    if(registerError){
+    if (registerError) {
       toast.error(registerError.data.message || "Signup Failed");
     }
-    if(loginIsSuccess && loginData){
+    if (loginIsSuccess && loginData) {
       toast.success(loginData.message || "Login successful.");
       navigate("/");
     }
-    if(loginError){ 
+    if (loginError) {
       toast.error(loginError.data.message || "login Failed");
     }
   }, [
@@ -115,6 +118,21 @@ const Login = () => {
                   placeholder="Eg. patel"
                   required="true"
                 />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="role">Role</Label>
+                <Select onValueChange={(value) => {
+                  console.log("Selected role:", value);
+                  setSignupInput({ ...signupInput, role: value });
+                }}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="instructor">Instructor</SelectItem>
+                    <SelectItem value="student">Student</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-1">
                 <Label htmlFor="username">Email</Label>
