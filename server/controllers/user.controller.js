@@ -5,8 +5,6 @@ import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
     try {
-
-
         const { name, email, password, role = 'student' } = req.body; // patel214
         if (!name || !email || !password || !role) {
             return res.status(400).json({
